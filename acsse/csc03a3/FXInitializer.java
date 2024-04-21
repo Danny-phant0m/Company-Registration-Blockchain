@@ -1,5 +1,7 @@
 package acsse.csc03a3;
 
+import java.util.Map;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -69,6 +71,33 @@ public class FXInitializer {
         
         // Set the grid layout as the root of the scene
         Scene scene = new Scene(grid, 600, 450);
+        
+     // Event handling for Register button
+        registerButton.setOnAction(e -> {
+            // Retrieve text from text fields
+            String companyName = companyNameField.getText();
+            String businessAddress = businessAddressField.getText();
+            String businessType = businessTypeField.getText();
+            String incorporationDate = dateOfIncorporationField.getText();
+            String legalStructure = legalStructureField.getText();
+            String phoneNumber = phoneNumberField.getText();
+            String emailAddress = emailField.getText();
+            String directors = directorsField.getText();
+            String description = descriptionField.getText();
+
+            // Create a CompanyRegistration object
+            CompanyRegistration registration = new CompanyRegistration(
+                companyName, businessAddress, businessType, incorporationDate,
+                legalStructure, phoneNumber, emailAddress, directors, description
+            );
+            
+            HashMapClass myhashMap = new HashMapClass<>();
+            
+         // Add the company registration information to the HashMap
+            myhashMap.put(companyName, registration);
+            
+            myhashMap.printHashMapContents();
+        });
         
         primaryStage.setTitle("Company Registration Blockchain"); // Set window title
         primaryStage.setScene(scene); // Set the scene
