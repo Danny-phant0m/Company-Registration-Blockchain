@@ -91,12 +91,11 @@ public class FXInitializer {
                 legalStructure, phoneNumber, emailAddress, directors, description
             );
             
-            HashMapClass myhashMap = new HashMapClass<>();
+            HashMapClass myHashMap = new HashMapClass();
+        
+            myHashMap.put(new Key(companyName), new Value(registration));
             
-         // Add the company registration information to the HashMap
-            myhashMap.put(companyName, registration);
-            
-            myhashMap.printHashMapContents();
+            myHashMap.printHashMapContents(new Key(companyName));
         });
         
         primaryStage.setTitle("Company Registration Blockchain"); // Set window title
