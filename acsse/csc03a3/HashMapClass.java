@@ -6,7 +6,9 @@ package acsse.csc03a3;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,20 +17,14 @@ import java.util.regex.Pattern;
  *
  */
 public class HashMapClass{
-		LinkedList<Entry>[] hashMap = new LinkedList[2];
+		LinkedList<Entry>[] hashMap;
 		int size = 0;
 	    public HashMapClass() {
-	    	
-	    	
+	    	hashMap = new LinkedList[2];
 	    }
 
 
-	    public void put(Key k, Value v) {
-//	        if (!validateCompanyInformation((CompanyRegistration) v)) {
-//	            System.out.println("Invalid company information. Registration failed.");
-//	            return;
-//	        }
-	    	
+	    public void put(Key k, Value v) {	    	
 	    	if(size >= hashMap.length) {
 	    		resize();
 	    	}
@@ -54,50 +50,16 @@ public class HashMapClass{
 	    		return;
 	    	}
 	    }
-
-	    private boolean validateCompanyInformation(CompanyRegistration registration) {
-	    	// Retrieve company information
-	        String companyName = registration.getCompanyName();
-	        String businessAddress = registration.getBusinessAddress();
-	        String businessType = registration.getBusinessType();
-	        String incorporationDate = registration.getIncorporationDate();
-	        String legalStructure = registration.getLegalStructure();
-	        String phoneNumber = registration.getPhoneNumber();
-	        String emailAddress = registration.getEmailAddress();
-	        String directors = registration.getDirectors();
-	        String description = registration.getDescription();
-	        
-	        // Check if any required field is empty
-	        if (companyName.isEmpty() || businessAddress.isEmpty() || businessType.isEmpty() ||
-	            incorporationDate.isEmpty() || legalStructure.isEmpty() || phoneNumber.isEmpty() ||
-	            emailAddress.isEmpty() || directors.isEmpty() || description.isEmpty()) {
-	            return false; // If any required field is empty, return false
+	    
+	 // Retrieve all entries in the HashMap
+	    public List<Entry> getAllEntries() {
+	        List<Entry> allEntries = new ArrayList<>();
+	        for (LinkedList<Entry> list : hashMap) {
+	            if (list != null) {
+	                allEntries.addAll(list);
+	            }
 	        }
-	        
-	        // Regular expression to check for special characters
-	        String regex = "[^A-Za-z0-9\\s]";
-	        
-	        // Check if the company name contains any special characters
-	        if (companyName.matches(regex)) {
-	            System.out.println("Company name contains special characters that are not allowed.");
-	            return false;
-	        }
-	        
-	        // Check if the incorporation date is in the past
-	        try {
-	            LocalDate.parse(incorporationDate, DateTimeFormatter.ofPattern("yyyy MM dd"));
-	        } catch (DateTimeParseException e) {
-	            System.out.println("Invalid incorporation date format. Use yyyy MM dd.");
-	            return false;
-	        }
-	        
-	        // Check if the email address is valid
-	        if (!isValidEmail(emailAddress)) {
-	            System.out.println("Invalid email address format.");
-	            return false;
-	        }
-	        
-	        return true; // All validations passed
+	        return allEntries;
 	    }
 	    public Value get(Key key) {
 	        int index = getIndex(key);
@@ -165,31 +127,24 @@ public class HashMapClass{
 	    }
 
 	    private int getIndex(Key key) {
-	        return key.hashCode() % hashMap.length;
+	        return Math.abs(key.hashCode() % hashMap.length);
 	    }
-
-	    private boolean isValidEmail(String email) {
-	        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-	        Pattern pattern = Pattern.compile(emailRegex);
-	        Matcher matcher = pattern.matcher(email);
-	        return matcher.matches();
-	    }
-	    
 	    public int getSize() {
 	    	return size;
 	    }
 	    
-	    public void printHashMapContents(Key k) {
-	        int index = getIndex(k);
-	        if (hashMap[index] == null) {
-	            System.out.println("No entries found for the given key.");
-	            return;
+	    public void printHashMapContents() {
+	    	boolean isEmpty = true;
+	        for (LinkedList<Entry> list : hashMap) {
+	            if (list != null) {
+	                for (Entry entry : list) {
+	                    System.out.println(entry.value.toString());
+	                    isEmpty = false;
+	                }
+	            }
 	        }
-
-	        for (Entry entry : hashMap[index]) {
-	            System.out.println(entry.value.toString());
+	        if (isEmpty) {
+	            System.out.println("HashMap is empty.");
 	        }
 	    }
-
-
 }

@@ -12,7 +12,7 @@ public class Entry {
     public Value value;
 
     public Entry(Key k, Value v) {
-        key = k;
-        value = v;
+        this.key = k;
+        this.value = v;
     }
 }
