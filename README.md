@@ -29,10 +29,11 @@ Choose to register a new company or access existing company details.
 Follow the prompts to enter company information or to retrieve data.
 
 File Descriptions
-BlockchainClient.java: Handles client-side blockchain interactions.
-BlockchainServer.java: Implements the server that communicates with the blockchain.
-BlockchainServerMain.java: Entry point for starting the blockchain server.
-CompanyBlockchainManager.java: Manages blockchain operations for company registrations.
-CompanyRegistration.java: Represents the company registration data model.
-Entry.java: Defines the entry structure for the blockchain.
-FXInitializer.java: Initializes the JavaFX application and sets up the GUI.
+
+- BlockchainClient.java: Handles client-side blockchain interactions.
+- BlockchainServer.java: Implements the server that communicates with the blockchain.
+- BlockchainServerMain.java: Entry point for starting the blockchain server.
+- CompanyBlockchainManager.java: Manages blockchain operations for company registrations.
+- CompanyRegistration.java: Represents the company registration data model.
+- Entry.java: Defines the entry structure for the blockchain.
+- FXInitializer.java: Initializes the JavaFX application and sets up the GUI.
