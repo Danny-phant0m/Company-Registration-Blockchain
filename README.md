@@ -21,7 +21,7 @@ This project is a Java-based application for managing company registrations on a
 To get a local copy of this project up and running, follow these steps:
 
 1. **Clone the repository**
-   git clone https://github.com/yourusername/company-registration-app.git
+   git clone https://github.com/Danny-phant0m/Company-Registration-Blockchain.git
 Navigate to the project directory
 cd company-registration-app
 Compile the Java files
