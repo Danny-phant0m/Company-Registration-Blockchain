@@ -22,13 +22,7 @@ To get a local copy of this project up and running, follow these steps:
 
 1. **Clone the repository**
    git clone https://github.com/Danny-phant0m/Company-Registration-Blockchain.git
-Navigate to the project directory
-cd company-registration-app
-Compile the Java files
-javac *.java
-Run the application
-java BlockchainServerMain
-Usage
+Navigate to the project directory and run javafx application
 
 Launch the application.
 Choose to register a new company or access existing company details.
